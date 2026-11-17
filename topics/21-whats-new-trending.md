@@ -231,6 +231,52 @@ A good answer: "Native gives the best UX, performance and immediate access to ne
 
 </details>
 
+### 18. What did Apple announce for developers with iOS 27?
+
+<details>
+<summary>Answer</summary>
+
+Highlights announced at WWDC 2026:
+- **Foundation Models framework** grows: **multimodal prompts** (images with text), Vision tools (OCR, barcodes) callable by the model on-device, **Dynamic Profiles** to swap models, tools and instructions within a session, an **Evaluations** framework to test AI features, and support for other models through a language-model protocol – including cloud models such as Claude and Gemini.
+- **Private Cloud Compute** access to Apple's latest foundation model for apps in the App Store Small Business Program, without cloud API costs.
+- **Core AI** – a new on-device framework for loading, specialising and running your own models with a Swift API.
+- **App Intents** – entity schemas feed Spotlight's semantic index, intent schemas make actions available through natural language, a **View Annotations** API maps on-screen views to entities, and an App Intents Testing framework.
+- **Design** – refined Liquid Glass materials, typography and tab/navigation bars.
+- **SwiftUI** – document APIs (`ReadableDocument`/`WritableDocument`), reorderable containers across lists and grids, new toolbar controls, alerts/confirmation dialogs with item bindings, `AsyncImage` using HTTP caching by default, and lazily initialised `@State` classes.
+- **Media** – a **NowPlaying** framework (Lock Screen, Control Center, Dynamic Island, CarPlay) and a Music Understanding framework.
+
+</details>
+
+### 19. What's new in Swift 6.4?
+
+<details>
+<summary>Answer</summary>
+
+Swift 6.4 (released September 2026) highlights:
+- **Language** – optional opaque/existential types written as `some P?` / `any P?`, an `@diagnose` attribute for controlling warnings in source, module selectors (`Module::name`) to disambiguate names, `await` calls inside `defer`, and `withTaskCancellationShield` to run cleanup that isn't interrupted by cancellation.
+- **Ownership and performance** – more tools for noncopyable types and safe low-level code: `UniqueBox`, `UniqueArray`, borrow accessors, an `Iterable` protocol, and safer `RawSpan` loading.
+- **Libraries** – Subprocess 1.0 for running processes, Observation improvements, `Span` interop with C++ `std::span`.
+- **Tooling** – Swift Build is the default build engine in SwiftPM, SBOM generation, better VS Code support.
+- **Testing** – interop between Swift Testing and XCTest assertions; repeated test runs from `swift test`.
+- **Platforms** – WebAssembly, an Android SDK, and Embedded Swift improvements.
+
+</details>
+
+### 20. What is new in Xcode 27 (agentic coding)?
+
+<details>
+<summary>Answer</summary>
+
+- **Coding agents in Xcode**, powered by the model of your choice, for prototyping, implementing and polishing features.
+- **Agent skills** for SwiftUI APIs and conventions, so agents follow Apple's recommended patterns.
+- **Agent-assisted localization** – adding languages and translating strings (including plural variants) in String Catalogs.
+- **Device Hub** for devices and simulators in one place.
+- **Instruments** improvements, including a Swift Concurrency instrument and comparisons between runs.
+
+Interview angle: be ready to explain how you use coding agents responsibly – reviewing diffs, running tests, and keeping project conventions in instruction files or skills.
+
+</details>
+
 ---
 
 [⬅ Previous: System Design](20-system-design.md) · [⬅ Back to index](../README.md) · [Next: Coding & Behavioral ➡](22-coding-scenarios.md)

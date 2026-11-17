@@ -457,6 +457,28 @@ In practice Swift is **multi-paradigm**: use FP for data transformations and bus
 
 </details>
 
+### 32. How do you implement a custom `Sequence` or `Collection`?
+
+<details>
+<summary>Answer</summary>
+
+A **`Sequence`** only needs `makeIterator()` returning an **`IteratorProtocol`** type with `mutating func next() -> Element?`:
+
+```swift
+struct Fibonacci: Sequence, IteratorProtocol {
+    private var current = 0, nextValue = 1
+    mutating func next() -> Int? {
+        defer { (current, nextValue) = (nextValue, current + nextValue) }
+        return current
+    }
+}
+for n in Fibonacci().prefix(10) { print(n) }   // 0 1 1 2 3 5 8 13 21 34
+```
+
+Conforming gives you `map`, `filter`, `reduce`, `prefix`, `contains` and `for-in` for free. A **`Collection`** adds multi-pass access by index: `startIndex`, `endIndex`, `subscript(position:)` and `index(after:)` – and then gets `count`, `first`, slicing and more. For quick cases use `sequence(first:next:)` or `AnySequence`. Note that a sequence may be single-pass (consumed when iterated); collections must not be.
+
+</details>
+
 ---
 
 [⬅ Previous: Swift Fundamentals](01-swift-basics.md) · [⬅ Back to index](../README.md) · [Next: Memory Management ➡](03-memory-management.md)

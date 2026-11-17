@@ -235,6 +235,19 @@ StoreKit 2 is the Swift-concurrency based in-app purchase API (iOS 15+): `Produc
 
 </details>
 
+### 19. What are app thinning and on-demand resources? What replaces them for large assets?
+
+<details>
+<summary>Answer</summary>
+
+- **App thinning** – the App Store delivers a variant tailored to each device (**slicing**: only the right image scales and architecture), so users download less. (Bitcode, once part of this, was deprecated in Xcode 14.)
+- **On-demand resources** – tag assets (levels, tutorials) so they're hosted by the App Store and downloaded when needed via `NSBundleResourceRequest`, keeping the initial download small.
+- For large content today, Apple recommends the **Background Assets** framework (including Apple-hosted asset packs), which downloads assets before first launch or in the background.
+
+Interview angle: reduce app size with asset catalogs, compressed media, removing unused code and resources, and downloading large optional content after install.
+
+</details>
+
 ---
 
 [⬅ Previous: Security & Privacy](18-security-privacy.md) · [⬅ Back to index](../README.md) · [Next: iOS System Design ➡](20-system-design.md)

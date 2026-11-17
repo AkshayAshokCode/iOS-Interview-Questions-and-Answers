@@ -393,6 +393,21 @@ Raising the target usually lets you remove a lot of compatibility code. Decide b
 
 </details>
 
+### 27. How do share extensions work, and what are their limits?
+
+<details>
+<summary>Answer</summary>
+
+A share extension appears in the system share sheet and runs in a **separate process** from your app:
+- Input arrives through `extensionContext.inputItems` as `NSExtensionItem`s whose `NSItemProvider` attachments you load (URLs, images, text) asynchronously.
+- **Activation rules** in the extension's Info.plist decide which content types make it appear.
+- It has a **much lower memory limit** than apps and should finish quickly – don't process huge files in memory.
+- To share data with the main app, use an **App Group** container (shared files, `UserDefaults(suiteName:)`, a shared database) and **Keychain sharing** for credentials.
+- For uploads that may outlive the extension, use a **background `URLSession`** with a shared container identifier.
+- Call `completeRequest` (or `cancelRequest`) when done.
+
+</details>
+
 ---
 
 [⬅ Previous: OOP, SOLID & Design Patterns](07-oop-solid-design-patterns.md) · [⬅ Back to index](../README.md) · [Next: UIKit ➡](09-uikit.md)

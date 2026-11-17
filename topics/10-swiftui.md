@@ -503,6 +503,21 @@ Prefer **item-based** APIs when the presentation needs data (it avoids stale-dat
 
 </details>
 
+### 31. How do you build a custom layout in SwiftUI? What is the `Layout` protocol?
+
+<details>
+<summary>Answer</summary>
+
+The **`Layout` protocol** (iOS 16+) lets you write containers like `HStack` yourself, e.g. a flow/tag layout that wraps items onto new lines:
+- **`sizeThatFits(proposal:subviews:cache:)`** – given the parent's proposed size, measure subviews (`subview.sizeThatFits(...)`) and return the container's size.
+- **`placeSubviews(in:proposal:subviews:cache:)`** – position each subview with `subview.place(at:anchor:proposal:)`.
+- Optional **cache** to avoid repeating measurements; **`LayoutValueKey`** to pass per-child values (like a priority) from children to the layout.
+- **`AnyLayout`** lets you switch between layouts (e.g. `HStackLayout` vs `VStackLayout`) while keeping view identity, so changes animate smoothly.
+
+Related tools: **`ViewThatFits`** picks the first child that fits the available space (e.g. a horizontal or vertical arrangement); `containerRelativeFrame` sizes views relative to their container; `GeometryReader` remains the fallback when you need raw sizes.
+
+</details>
+
 ---
 
 [⬅ Previous: UIKit](09-uikit.md) · [⬅ Back to index](../README.md) · [Next: Architecture ➡](11-architecture.md)

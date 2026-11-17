@@ -566,6 +566,19 @@ Other uses of overriding `hitTest`: letting touches pass through a transparent o
 
 </details>
 
+### 41. How do you create custom view controller transitions?
+
+<details>
+<summary>Answer</summary>
+
+- Set a **`UIViewControllerTransitioningDelegate`** (for present/dismiss) or a **`UINavigationControllerDelegate`** (for push/pop).
+- Return an animator conforming to **`UIViewControllerAnimatedTransitioning`**: `transitionDuration(using:)` and `animateTransition(using:)`, where you add views to the context's `containerView`, animate them, and call **`completeTransition(_:)`** when done (pass `false` if cancelled).
+- For **interactive** transitions (e.g. swipe to dismiss), return a `UIPercentDrivenInteractiveTransition` and update it from a gesture recognizer.
+- For custom presentation sizes/dimming, use a `UIPresentationController`.
+- Newer built-ins reduce the need for custom code: the **zoom transition** (iOS 18+, `preferredTransition = .zoom` in UIKit, `.navigationTransition(.zoom(...))` in SwiftUI) and `matchedGeometryEffect` in SwiftUI.
+
+</details>
+
 ---
 
 [⬅ Previous: iOS Fundamentals](08-ios-fundamentals.md) · [⬅ Back to index](../README.md) · [Next: SwiftUI ➡](10-swiftui.md)

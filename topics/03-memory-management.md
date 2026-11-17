@@ -215,6 +215,21 @@ iOS has **no swap** for app memory. Under memory pressure, the system sends **me
 
 </details>
 
+### 16. How do weak references work internally in Swift (side tables)?
+
+<details>
+<summary>Answer</summary>
+
+Every Swift object starts with an inline reference count holding its strong and unowned counts. When the **first weak reference** is created, the runtime allocates a **side table** for the object, which stores the strong, unowned and weak counts, and the object's header points to it. Weak references point to the **side table**, not directly to the object.
+
+- When the strong count reaches zero, the object is **deinitialised**; weak references now read `nil` (the side table knows the object is gone).
+- The object's memory stays allocated while **unowned** references exist (accessing it traps instead of reading garbage).
+- The side table is freed when the weak count reaches zero.
+
+This design makes weak references safe and cheap to zero out, and explains why `unowned` is slightly cheaper (no side table needed) but crashes on use after deallocation.
+
+</details>
+
 ---
 
 [⬅ Previous: Swift Advanced](02-swift-advanced.md) · [⬅ Back to index](../README.md) · [Next: GCD & Operations ➡](04-gcd-operations.md)

@@ -288,6 +288,46 @@ The backend exposes a **minimum supported app version** (and a recommended one).
 
 </details>
 
+### 17. Design a music or podcast player app that keeps playing in the background.
+
+<details>
+<summary>Answer</summary>
+
+```mermaid
+flowchart TD
+    UI["SwiftUI screens"] --> PM["PlayerManager (@MainActor, @Observable)"]
+    PM --> AVP["AVPlayer / AVQueuePlayer"]
+    PM --> SES["AVAudioSession<br/>category .playback"]
+    PM --> NP["Now Playing info + remote commands<br/>(lock screen, Control Center, CarPlay, headphones)"]
+    AVP --> SRC["Streaming (HLS) + downloaded files"]
+    PM --> DB[("SwiftData: library, queue,<br/>playback positions")]
+```
+
+**Key parts**
+- **Background audio** – enable the *Audio, AirPlay, and Picture in Picture* background mode and set the `AVAudioSession` category to `.playback`, then activate the session before playing.
+- **Now Playing and remote controls** – publish title, artwork, duration and elapsed time to `MPNowPlayingInfoCenter`, and handle play/pause/skip/seek from `MPRemoteCommandCenter` (lock screen, Control Center, AirPods, CarPlay). iOS 27 introduces a NowPlaying framework covering the Lock Screen, Control Center, Dynamic Island and CarPlay.
+- **Interruptions and routes** – observe `AVAudioSession.interruptionNotification` (phone calls, Siri) and route changes (pause when headphones are unplugged).
+- **Offline** – download episodes with a background `URLSession` (or `AVAssetDownloadURLSession` for HLS); manage storage and deletion.
+- **State** – persist queue and positions so podcasts resume where the user stopped; restore after the app is terminated.
+- **Extras** – AirPlay, CarPlay audio app, Siri/App Intents ("play my latest episode"), Live Activity for playback if useful.
+
+</details>
+
+### 18. Design a photo backup / upload app (like iCloud Photos or Google Photos backup).
+
+<details>
+<summary>Answer</summary>
+
+- **Access** – for one-off uploads use **`PhotosPicker`** (no permission needed). For automatic backup, request photo library access with `PHPhotoLibrary.requestAuthorization(for: .readWrite)` and handle **limited access** (the user selects some photos).
+- **Detecting new assets** – fetch `PHAsset`s sorted by creation date, and register a `PHPhotoLibraryChangeObserver` for changes while running; persist the last synced state (asset `localIdentifier`s and hashes) in SwiftData/Core Data.
+- **Exporting originals** – use `PHAssetResourceManager` to write the original files to a temporary file; allow network access because originals may be in iCloud (optimised storage).
+- **Uploading** – **background `URLSession` upload tasks from files** so uploads continue when the app is suspended; chunked/resumable uploads for large videos; retries with backoff.
+- **Scheduling** – `BGProcessingTask` (requires network, ideally external power) to scan and enqueue uploads; respect Low Power Mode and cellular settings.
+- **Deduplication** – content hashes so re-installs don't re-upload.
+- **Progress and UI** – per-asset status, overall progress, and a clear backup status screen.
+
+</details>
+
 ---
 
 [⬅ Previous: Xcode, Build & Release](19-xcode-build-release.md) · [⬅ Back to index](../README.md) · [Next: What's New & Trending ➡](21-whats-new-trending.md)
