@@ -2,7 +2,7 @@
   "name": "iOS Interview Prep Tracker",
   "short_name": "iOS Prep",
   "description": "Study iOS interview questions and track your progress.",
-  "start_url": "/iOS-Interview-Questions-cheat-sheet/",
+  "start_url": "/iOS-Interview-Questions-and-Answers/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f7f7f5",
@@ -25,5 +25,5 @@
       "purpose": "maskable"
     }
   ],
-  "id": "/iOS-Interview-Questions-cheat-sheet/"
+  "id": "/iOS-Interview-Questions-and-Answers/"
 }

@@ -1,14 +1,14 @@
-# iOS Interview Questions – Cheat Sheet
+# iOS Interview Questions & Answers
 
 A revision guide for iOS developer interviews: **526 questions with interview-ready answers**, split into 25 topics. It covers Swift, concurrency, UIKit and SwiftUI, architecture, system design and what's new in iOS 26 and Swift 6.
 
 Every answer is hidden in a collapsible block, so you can **test yourself first** and then click to check.
 
-> **📈 [Open the interactive study tracker](https://akshayashokcode.github.io/iOS-Interview-Questions-cheat-sheet/)**: mark questions ✓ Done or ↻ Revise, see your progress per topic, search every question, listen to answers read aloud, and continue where you left off.
+> **📈 [Open the interactive study tracker](https://akshayashokcode.github.io/iOS-Interview-Questions-and-Answers/)**: mark questions ✓ Done or ↻ Revise, see your progress per topic, search every question, listen to answers read aloud, and continue where you left off.
 >
 > **No account needed.** Your progress saves automatically on your device. Want to keep it safe and in sync across your devices? Sign in (optional).
 
-> Companion repo: [Android Interview Questions – Cheat Sheet](https://github.com/AkshayAshokCode/Android-Interview-Questions-cheat-sheet)
+> Companion repo: [Android Interview Questions & Answers](https://github.com/AkshayAshokCode/Android-Interview-Questions-and-Answers)
 
 ---
 
